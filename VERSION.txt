@@ -1,0 +1,8 @@
+v1.1.3
+
+Release notes:
+- Menyesuaikan halaman Tentang Kami berdasarkan referensi terbaru.
+- Menambahkan 14 link Wordwall pada Games.
+- Mempertahankan 2 game placeholder untuk total 16 game.
+- Mengubah asset preview game menjadi rasio 4:3, ukuran 1200x900 px.
+- Semua fitur dan konten v1.1.2 dipertahankan.

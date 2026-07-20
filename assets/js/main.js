@@ -49,7 +49,7 @@
               <img src="${item.poster}" alt="${escapeHtml(item.title)}">
               <div class="youtube-overlay">
                 <div class="play">▶</div>
-                <div class="youtube-note">Preview embed aktif saat dibuka melalui Live Server / GitHub Pages</div>
+                <div class="youtube-note">Tonton video lengkapnya melalui YouTube.</div>
                 <a class="btn btn-link" href="${watchUrl}" target="_blank" rel="noopener noreferrer" style="margin-top:10px">Buka YouTube ↗</a>
               </div>
             </div>
@@ -75,7 +75,7 @@
           <img src="${item.poster}" alt="${escapeHtml(item.title)}">
           <div class="youtube-overlay">
             <div class="play">▶</div>
-            <div class="youtube-note">Isi link YouTube di assets/js/content-data.js</div>
+            <div class="youtube-note">Video seru lainnya akan segera hadir.</div>
           </div>
         </div>
       </div>`;
@@ -98,11 +98,10 @@
         </div>
         <div class="card-body">
           <h3>${escapeHtml(item.title)}</h3>
-          <p>Ganti file <strong>book-${String(i+1).padStart(2,"0")}.jpg</strong> untuk mengganti cover.</p>
+          <p>Yuk, buka bukunya dan nikmati cerita seru penuh warna!</p>
           <div class="card-actions">
-            <a class="btn btn-download" href="${item.download}" download>⬇ Download Buku</a>
+            <a class="btn btn-link" href="${item.readUrl}" target="_blank" rel="noopener noreferrer">📖 Baca Buku</a>
           </div>
-          <span class="tag">Buku Digital</span>
         </div>
       </article>
     `).join("");
@@ -118,19 +117,18 @@
         </div>
         <div class="card-body">
           <h3>${escapeHtml(item.title)}</h3>
-          <p>Ganti file <strong>game-${String(i+1).padStart(2,"0")}.jpg</strong> untuk preview game.</p>
+          <p>Siap bermain? Buka game dan selesaikan tantangan belajarnya!</p>
           <div class="card-actions">
             <a class="btn ${enabled ? "btn-link" : "btn-disabled"}" href="${enabled ? item.url : "#"}" ${enabled ? 'target="_blank" rel="noopener noreferrer"' : ""}>
-              ${enabled ? "Buka Game ↗" : "Isi URL Game"}
+              ${enabled ? "Buka Game ↗" : "Segera Hadir"}
             </a>
           </div>
-          <span class="tag">Game Edukatif</span>
         </div>
       </article>`;
     }).join("");
   }
 
-  function renderVideos(target, items, tag) {
+  function renderVideos(target, items) {
     target.innerHTML = items.map(item => {
       const watch = youtubeWatchUrl(item.youtube);
       return `
@@ -138,11 +136,10 @@
         ${renderYouTubeMedia(item)}
         <div class="card-body">
           <h3>${escapeHtml(item.title)}</h3>
-          <p>${watch ? "Video dapat diputar langsung dari YouTube embed." : "Poster dummy tampil sampai link YouTube diisi."}</p>
+          <p>${watch ? "Yuk, tonton videonya dan nikmati ceritanya!" : "Video seru lainnya akan segera hadir."}</p>
           <div class="card-actions">
-            ${watch ? `<a class="btn btn-link" href="${watch}" target="_blank" rel="noopener noreferrer">Buka di YouTube ↗</a>` : `<span class="btn btn-disabled">Link YouTube belum diisi</span>`}
+            ${watch ? `<a class="btn btn-link" href="${watch}" target="_blank" rel="noopener noreferrer">Buka di YouTube ↗</a>` : `<span class="btn btn-disabled">Segera Hadir</span>`}
           </div>
-          <span class="tag">${tag}</span>
         </div>
       </article>`;
     }).join("");
@@ -154,10 +151,10 @@
 
     const type = grid.dataset.render;
     if (type === "books") renderBooks(grid, window.CREAKIDS_DATA.books);
-    if (type === "animationVideos") renderVideos(grid, window.CREAKIDS_DATA.animationVideos, "Video Animasi");
-    if (type === "readAloudVideos") renderVideos(grid, window.CREAKIDS_DATA.readAloudVideos, "Read Aloud");
+    if (type === "animationVideos") renderVideos(grid, window.CREAKIDS_DATA.animationVideos);
+    if (type === "readAloudVideos") renderVideos(grid, window.CREAKIDS_DATA.readAloudVideos);
     if (type === "games") renderGames(grid, window.CREAKIDS_DATA.games);
-    if (type === "songs") renderVideos(grid, window.CREAKIDS_DATA.songs, "Lagu Pembelajaran");
+    if (type === "songs") renderVideos(grid, window.CREAKIDS_DATA.songs);
   }
 
   function setupMenu() {

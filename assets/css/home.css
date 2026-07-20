@@ -226,17 +226,28 @@ img { max-width: 100%; display: block; }
 .btn-yellow { background: #ffd31a; color: #513cbc; }
 
 .hero-visual {
-  min-height: 455px;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  background: white;
+  min-height: 0;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
 }
 
 .hero-visual img {
+  display: block;
   width: 100%;
-  height: 455px;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  filter: none;
+  padding: 0;
 }
 
 .feature-strip {
@@ -327,16 +338,35 @@ img { max-width: 100%; display: block; }
 }
 
 .story-banner {
-  height: 190px;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 12px 28px rgba(80, 56, 150, .12);
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  background-image: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  padding: 0;
 }
 
 .story-banner img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .slider,
@@ -571,17 +601,35 @@ img { max-width: 100%; display: block; }
 .cta-copy p { color: #f0eeff; max-width: 650px; }
 
 .cta-visual {
-  height: 240px;
-  border-radius: 26px;
-  overflow: hidden;
-  background: rgba(255,255,255,.09);
-  border: 1px solid rgba(255,255,255,.18);
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  background-image: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  padding: 0;
 }
 
 .cta-visual img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  padding: 0;
+  margin: 0 auto;
 }
 
 /* FOOTER */
@@ -682,7 +730,7 @@ img { max-width: 100%; display: block; }
     grid-template-columns: 1fr;
   }
 
-  .story-banner { height: 150px; }
+  
   .media-card { flex-basis: calc((100% - 22px) / 2); }
   .video-card, .game-card { flex-basis: calc((100% - 18px) / 2); }
 }
@@ -733,4 +781,311 @@ img { max-width: 100%; display: block; }
 
   .footer-brand { justify-self: center; }
   .footer-values, .socials { justify-content: center; }
+}
+
+/* v1.1.5 — Mobile viewport lock / horizontal overflow fix */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body { position: relative; }
+main, section, header, footer, .container { max-width: 100%; }
+img, iframe, video { max-width: 100%; }
+.slider, .mini-slider, .slider-track {
+  min-width: 0;
+  max-width: 100%;
+}
+@media (max-width: 600px) {
+  .slider, .mini-slider { overflow: hidden; }
+  .slider-track {
+    width: 100%;
+    max-width: 100%;
+    overscroll-behavior-x: contain;
+    touch-action: pan-y;
+  }
+  .slider-btn.prev { left: 4px; }
+  .slider-btn.next { right: 4px; }
+  .hero, .content-section, .cta-section, .site-footer { overflow-x: clip; }
+}
+
+
+/* v1.1.7 contributor cards */
+.contributor-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+}
+
+.contributor-card {
+    border-radius:28px;
+    padding:24px;
+    text-align:center;
+    min-width:0;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.contributor-card img {
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid white;
+}
+
+.contributor-card p,
+.contributor-card h3 {
+    overflow-wrap:anywhere;
+}
+
+.contributor-card.lavender {background:#eee5ff;}
+.contributor-card.blue {background:#e4f4ff;}
+.contributor-card.mint {background:#e4faef;}
+.contributor-card.yellow {background:#fff5d8;}
+.contributor-card.pink {background:#ffe6f1;}
+.contributor-card.peach {background:#ffe9db;}
+
+@media(max-width:768px){
+    .contributor-grid {
+        grid-template-columns:repeat(2,1fr);
+        gap:16px;
+    }
+    .contributor-card img {
+        width:90px;
+        height:90px;
+    }
+}
+
+/* v1.1.8 contributor center fix */
+.contributor-card {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    text-align:center;
+}
+
+.contributor-card img {
+    display:block;
+    margin:0 auto 16px;
+}
+
+.contributor-card h3,
+.contributor-card p {
+    width:100%;
+    text-align:center;
+}
+
+
+/* v1.1.17 — Hero PNG tampil apa adanya */
+.hero img,
+.hero-image,
+.hero-visual img,
+.hero-media img,
+.hero-art img,
+.about-hero img,
+.about-illustration img,
+.page-hero img,
+[class*="hero"] img {
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  border: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  transform: none;
+  object-fit: contain;
+}
+
+/* Hilangkan style placeholder/wadah visual yang memberi efek pada asset hero */
+.hero-image,
+.hero-visual,
+.hero-media,
+.hero-art,
+.about-hero,
+.about-illustration,
+.page-hero-visual {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Decorative pseudo-elements pada area hero tidak boleh menimpa PNG */
+.hero-image::before,
+.hero-image::after,
+.hero-visual::before,
+.hero-visual::after,
+.hero-media::before,
+.hero-media::after,
+.hero-art::before,
+.hero-art::after,
+.about-hero::before,
+.about-hero::after,
+.about-illustration::before,
+.about-illustration::after,
+.page-hero-visual::before,
+.page-hero-visual::after {
+  display: none !important;
+  content: none !important;
+}
+
+
+/* v1.1.17 — semua container asset hero benar-benar netral */
+.hero-img,
+.hero-image,
+.hero-visual,
+.hero-media,
+.hero-art,
+.page-hero-visual,
+.about-illustration,
+.contact-right .about-illustration {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  min-height: 0 !important;
+}
+
+.hero-img img,
+.hero-image img,
+.hero-visual img,
+.hero-media img,
+.hero-art img,
+.page-hero-visual img,
+.about-illustration img,
+.contact-right .about-illustration img,
+[class*="hero"] > img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  filter: none !important;
+  padding: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.hero-img::before,
+.hero-img::after,
+.hero-image::before,
+.hero-image::after,
+.hero-visual::before,
+.hero-visual::after,
+.hero-media::before,
+.hero-media::after,
+.hero-art::before,
+.hero-art::after,
+.page-hero-visual::before,
+.page-hero-visual::after,
+.about-illustration::before,
+.about-illustration::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* v1.1.17 — Homepage hero asset containers: PNG tampil utuh tanpa container dekoratif */
+.story-banner,
+.cta-visual {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+.story-banner img,
+.cta-visual img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  padding: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.story-banner::before,
+.story-banner::after,
+.cta-visual::before,
+.cta-visual::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+/* v1.1.17 — static image background global */
+html {
+  background: transparent;
+}
+
+body {
+  background-color: #faf7ff;
+  background-image: url("../images/backgrounds/site-background.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* v1.1.17 — homepage global logo */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.brand img {
+  display: block;
+  width: clamp(125px, 13vw, 180px);
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* v1.1.17 — Homepage book placeholders use 1:1 ratio */
+.story-card img,
+.book-card img,
+.slider-card img,
+.story-slide img {
+  aspect-ratio: 1 / 1 !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
